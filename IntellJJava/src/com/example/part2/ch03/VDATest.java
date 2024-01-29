@@ -1,3 +1,5 @@
+package com.example.part2.ch03;
+
 public class VDATest {
   public static void main(String[] args) {
     // Q. 정수 한 개를 저장하기 위해 [변수를 선언]하시오.

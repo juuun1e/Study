@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package com.example.part2.ch02;
 
 // OOP 객체지향프로그래밍 : 클래스 단위로 코딩을 한다.
 // 시작 : 메인클래스

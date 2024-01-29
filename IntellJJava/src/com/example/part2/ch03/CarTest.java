@@ -1,3 +1,5 @@
+package com.example.part2.ch03;
+
 public class CarTest {
   public static void main(String[] args) {
     // java API(External Lib)에 있는 String 자료형 = "문자열"

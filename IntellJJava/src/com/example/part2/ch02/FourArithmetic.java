@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package com.example.part2.ch02;
 
 public class FourArithmetic {
   public static void main(String[] args) {

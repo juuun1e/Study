@@ -1,3 +1,5 @@
+package com.example.part2.ch03;
+
 public class FindAPI {
   public static void main(String[] args) {
     // 자료형 변수; == 변수 선언

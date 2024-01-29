@@ -1,3 +1,5 @@
+package com.example.part2.ch04;
+
 public class BinaryTest {
   public static void main(String[] args) {
     // 정수형 기본 타입 int
