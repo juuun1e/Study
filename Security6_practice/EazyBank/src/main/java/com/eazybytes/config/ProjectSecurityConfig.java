@@ -17,6 +17,21 @@ public class ProjectSecurityConfig {
   @Bean //시작단계에서 프레임워크가 클래스 안에 정의한 모든 Bean을 스캔
   SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 
+    /*사용자 정의 보안 설정 : 모든 요청 거부*/
+/* http.authorizeRequests()
+        .anyRequest().denyAll();
+    http.formLogin(withDefaults())
+        .httpBasic(withDefaults());
+    return http.build();*/
+
+    /*사용자 정의 보안 설정 : 모든 요청 수락*/
+/*    http.authorizeRequests()
+        .anyRequest().permitAll();
+    http.formLogin(withDefaults())
+        .httpBasic(withDefaults());
+    return http.build();*/
+
+    /*보안과 공개 API를 혼합한 사용자 정의 설정*/
     http.authorizeRequests()
             .requestMatchers("/myAccount","/myBalance","/myLoans","/myCards").authenticated()
             .requestMatchers("/notices","/contact").permitAll(); //보안 없이 모든 사용자에게 허가
