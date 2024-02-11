@@ -16,6 +16,11 @@ public class ProjectSecurityConfig {
   //맞춤형 요구사항을 정의하고자 할 때마다 .requestMatches 메서드 호출
   @Bean //시작단계에서 프레임워크가 클래스 안에 정의한 모든 Bean을 스캔
   SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+    /*사용자 정의 보안 설정 : 기본적으로 따르는 설정*/
+/* http.authorizeRequests().anyRequest().authenticated();
+    http.formLogin(withDefaults())
+        .httpBasic(withDefaults());
+    return http.build();*/
 
     /*사용자 정의 보안 설정 : 모든 요청 거부*/
 /* http.authorizeRequests()
