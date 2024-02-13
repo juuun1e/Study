@@ -50,6 +50,9 @@ public class ProjectSecurityConfig {
 
 
     //애플리케이션 메모리에 다수의 사용자 계정 생성하기 방법2 - NoOpPasswordEncoder Bean
+    //userDetailsManager Bean을 생성하고 구축할 때마다
+    //DaoAuthenticationProvider는 InMemory 안에 있는 메소드를 호출하여 사용자 인증하려고 함
+    //→ 호출한 메서드 : loadUserByUsername , 리턴타입(UserDetails)
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
 
