@@ -55,6 +55,8 @@ public class ProjectSecurityConfig {
                 // 성공적인 승인 이후로 필터가 실행되도록 하기 위해 addFilterAfter 추가 - 자체 커스텀 필터의 객체를 전달
                 // 로그인이 성공적으로 완료 되자마자 JWT토큰을 생성해야 한다는 뜻
                 .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
+                // 토큰의 유효성을 검증하는 역할의 필터 -> 인증이 시도되기 전에 시행되어야 함. -> BasicAuthenticationFilter 이전에 시행되도록 설정
+                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests)->requests
                         .requestMatchers("/myAccount").hasRole("USER")
                         .requestMatchers("/myBalance").hasAnyRole("USER","ADMIN")
