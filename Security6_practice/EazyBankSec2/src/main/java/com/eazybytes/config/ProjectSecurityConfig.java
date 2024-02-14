@@ -4,13 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import javax.sql.DataSource;
 
 @Configuration
 public class ProjectSecurityConfig {
@@ -71,13 +67,13 @@ public class ProjectSecurityConfig {
     } */
     //-> 더 이상 사용 안함. Jdbc방식의 인증 사용
 
-    @Bean
+/*    @Bean
     public UserDetailsService userDetailsService(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
         // DataSouce객체가 JdbcUserDetailsManager에게 넘어갈 때마다 스프링부트는 데이터 소스 객체를 자동적으로 웹 애플리케이션 내부에 생성,
         // JdbcUserDetailsManager에게 데이터베이스를 생성하였으며 그에 대한 정보는 이  DataSource 에 있습니다~ 하고 알려주는 것
         // : Manager 객체 생성의 이유
-    }
+    }*/
 
 
     // 정상적 수행 = 반드시 웹 어플리케이션 안에서 비밀번호와 할당량 유형의 Bean을 생성해야 함
