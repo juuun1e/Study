@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Customer {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id; //자동적으로 데이터베이승에서 사용 가능한 새로운 id값 생성
   private String email;
   private String pwd;
