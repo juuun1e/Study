@@ -14,19 +14,16 @@ public class ProjectSecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> csrf.disable())
-                .authorizeHttpRequests((requests)->requests
-                        .requestMatchers("/myAccount","/myBalance","/myLoans","/myCards").authenticated()
-                        .requestMatchers("/notices","/contact","/register").permitAll())
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards").authenticated()
+                        .requestMatchers("/notices", "/contact", "/register").permitAll())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 
-    //비밀번호 검증을 위한 BCrypt알고리즘 사용 -> 사용 첫 지점 : 회원등록(입력값을 해싱하여 db에 저장)
-    //해시값 : 첫 3개의 철자 $2a -> BCrypt버전을 알려줌
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 

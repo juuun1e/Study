@@ -14,15 +14,16 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-// EazyBankUserDetails가 있기에 로그인을 위해 수정할 부분은 없음
-// 이 클래스에서 유저네임의 도움을 받아 유저 정보를 불러옴 : loadUserByUsername()
-// 비밀번호들의 실질적인 비교는 DaoAuthenticationProvider에서 일어남 : additionalAuthenticationChecks()
 @Service
-public class EazyBankUserDetails implements UserDetailsService {
+public class EazyBankUserDetails  implements UserDetailsService {
 
     @Autowired
     private CustomerRepository customerRepository;
 
+    // 이전에 작성했던 로직 : 유저의 세부 사항들을 데이터베이스로부터 불러와
+    // 유저 세부 정보 객체로 변환하기 위해 'User'생성자를 사용하고 있음.
+    // -> 이 객체가 DaoAuthenticationProvider에서 사용될 것
+    // (나중에 Dao가 비밀번호 비교 -> 성공적이면 authentication객체 생성)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         String userName, password;
