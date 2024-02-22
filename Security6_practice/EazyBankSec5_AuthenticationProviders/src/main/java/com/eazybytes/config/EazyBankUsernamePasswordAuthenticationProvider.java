@@ -44,7 +44,7 @@ public class EazyBankUsernamePasswordAuthenticationProvider implements Authentic
         // 일치하다면 if 블록 실행, 유저의 authorities세부사항(=role)를 덧붙이는 로직
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(customer.get(0).getRole())); //Role문자열 값을 SimpleGrantedAuthority클래스로 변환
-        // 모든 정보를 모아 토큰을 새롭게 생성 -> 생성자를 살펴보면 ProviderManager에게 authentication이 성공적으로 이루어졌다고 알림
+        // 모든 조건이 충족되었을 때 정보를 모아 토큰을 새롭게 생성 -> 생성자를 살펴보면 ProviderManager에게 authentication이 성공적으로 이루어졌다고 알림
         return new UsernamePasswordAuthenticationToken(username, pwd, authorities);
       } else { // 대상이 없다면 Exception처리
         throw new BadCredentialsException("Invalid password!");
@@ -62,3 +62,7 @@ public class EazyBankUsernamePasswordAuthenticationProvider implements Authentic
     return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
   }
 }
+
+// 로그인 버튼 누르면 ProviderManager가 AuthenticationProvider 내에 supports() 주입시키려 함
+// ProviderManager를 클릭하면 자체 제작한 AuthenticationProvider.authenticate() 로직 실행
+// ProviderManager에게서 결과를 받으면 하우스키핑 활동 진행 : 넘기는 인증 정보를 제거(인증이 성공적이라 security 내에 더이상 비밀번호가 필요 없기 때문)
