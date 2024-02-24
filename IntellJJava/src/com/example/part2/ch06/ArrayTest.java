@@ -2,10 +2,14 @@ package com.example.part2.ch06;
 
 public class ArrayTest {
   public static void main(String[] args) {
-    // Q.[실수 5개]를 저장 할 [배열을 생성]한 뒤 모든 원소에 10.5을 저장하고 출력하세요.
+    // (기본배열) Q.[실수 5개]를 저장 할 [배열을 생성]한 뒤 모든 원소에 값을 저장하고 출력하세요.
     float[] f= new float[5];
+    f[0]=10.5f;
+    f[1]=17.4f;
+    f[2]=59.2f;
+    f[3]=74.9f;
+    f[4]=97.5f;
     for(int i=0; i<f.length; i++){
-      f[i]=10.5f;
       System.out.println(f[i]);
     }
 
