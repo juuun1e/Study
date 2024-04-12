@@ -1,9 +1,7 @@
 package hello.hellospring;
 
-import hello.hellospring.repository.JpaMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.service.MemberService;
-import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,25 +9,26 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfig {
 
-  //private final DataSource dataSource;
-  private final EntityManager em;
+  // 스프링 컨테이너에서 MemberRepository를 찾음 => SpringDataJpaMemberRepository interface
+  // 주입 받으면 Spring Data JPA가 구현체를 만들어 놓은 게 bean으로 등록된다.
+  @Autowired // 단일 생성자라서 생략 가능
+  private final MemberRepository memberRepository;
 
-  @Autowired
-  public SpringConfig(EntityManager em) {
-    //this.dataSource = dataSource;
-    this.em = em;
+  public SpringConfig(MemberRepository memberRepository) {
+    this.memberRepository = memberRepository;
   }
 
+  // MemberService에도 의존관계 설정
   @Bean
   public MemberService memberService() {
-    return new MemberService(memberRepository());
+    return new MemberService(memberRepository);
   }
 
-  @Bean
-  public MemberRepository memberRepository() {
-    // return new MemoryMemberRepository(); 방금 만든 레포지토리로 변경
-    // return new JdbcMemberRepository(dataSource);
-    // return new JdbcTemplateMemberRepository(dataSource);
-    return new JpaMemberRepository(em);
-  }
+//  @Bean
+//  public MemberRepository memberRepository() {
+//    return new MemoryMemberRepository(); 방금 만든 레포지토리로 변경
+//    return new JdbcMemberRepository(dataSource);
+//    return new JdbcTemplateMemberRepository(dataSource);
+//    return new JpaMemberRepository(em);
+//  }
 }
