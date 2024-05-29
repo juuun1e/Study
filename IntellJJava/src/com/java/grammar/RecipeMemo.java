@@ -1,4 +1,4 @@
-package com.java;
+package com.java.grammar;
 
 import java.util.Scanner;
 
